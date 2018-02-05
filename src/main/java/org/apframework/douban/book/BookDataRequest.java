@@ -2,7 +2,6 @@ package org.apframework.douban.book;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -52,10 +51,6 @@ public class BookDataRequest {
         Response response = client.newCall(request).execute();
         ResponseBody body = response.body();
 
-        if (body == null || Strings.isNullOrEmpty(body.string())) {
-            return null;
-        }
-
         return decodeData(
                 body.string()
         );
@@ -83,7 +78,7 @@ public class BookDataRequest {
         JSONArray tagArray = book.getJSONArray("tags");
         // 取前三个标签
         List<String> tags = Lists.newArrayList();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3 && i < tagArray.size(); i++) {
             if (tagArray.getJSONObject(i) != null) {
                 tags.add(tagArray.getJSONObject(i).getString("name"));
             }

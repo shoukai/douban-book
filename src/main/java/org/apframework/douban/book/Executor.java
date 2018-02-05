@@ -15,6 +15,6 @@ public class Executor {
         BookDataRequest request = new BookDataRequest();
         List<BookSummaryVO> summaryList = request.request(userId);
 
-        System.out.println(summaryList);
+        System.out.println(MarkDownBuilder.build(summaryList));
     }
 }
