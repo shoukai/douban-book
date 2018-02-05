@@ -1,6 +1,6 @@
 # 豆瓣读书同步工具
 
-### 介绍
+### 简介
 
 利用豆瓣OpenAPI获取个人读书列表并转行为markdown格式。示例： [个人阅读列表](http://apframework.com/pages/read)
 
@@ -12,6 +12,14 @@
 mvn exec:java -Dexec.mainClass="org.apframework.douban.book.Executor" -Dexec.args="个人豆瓣ID"
 ```
 
-### 参考
+### 说明
 
+获取某个用户的所有图书收藏信息
+
+```
+GET  https://api.douban.com/v2/book/user/:name/collections
+```
+
+### 参考
+* [豆瓣Api V2（测试版）](https://developers.douban.com/wiki/?title=api_v2)
 * [如何将自己的豆瓣日记、书评、影评全部导出](https://www.zhihu.com/question/25868709)
