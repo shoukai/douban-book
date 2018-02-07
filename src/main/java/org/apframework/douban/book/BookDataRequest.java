@@ -92,7 +92,7 @@ public class BookDataRequest {
                 tags,
                 book.getString("image"),
                 book.getString("title"),
-                book.getString("url")
+                book.getString("alt")
         );
 
     }
