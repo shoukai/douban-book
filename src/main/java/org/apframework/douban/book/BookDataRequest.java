@@ -9,11 +9,16 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class BookDataRequest {
 
     static int BATCH_SIZE = 100;
+
+    static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
 
     static String DOUBAN_REQUEST_URL_TEMPLATE = "https://api.douban.com/v2/book/user/%s/collections?status=read&start=%d&count=%d";
 
@@ -36,13 +41,13 @@ public class BookDataRequest {
                 }
                 counter++;
             }
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         return summaryList;
     }
 
-    private List<BookSummaryVO> requestItem(String url) throws IOException {
+    private List<BookSummaryVO> requestItem(String url) throws IOException, ParseException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -57,7 +62,7 @@ public class BookDataRequest {
     }
 
 
-    private static List<BookSummaryVO> decodeData(String data) {
+    private static List<BookSummaryVO> decodeData(String data) throws ParseException {
         JSONObject object = JSONObject.parseObject(data);
         JSONArray array = object.getJSONArray("collections");
         if (array == null) {
@@ -71,7 +76,16 @@ public class BookDataRequest {
         return summaryList;
     }
 
-    public static BookSummaryVO decodeRecord(JSONObject record) {
+    public static BookSummaryVO decodeRecord(JSONObject record) throws ParseException {
+
+        String updated = record.getString("updated");
+        Date udpateTime = simpleDateFormat.parse(updated);
+
+        // 获取用户评分
+        String mineRating = "";
+        if (record.containsKey("rating")) {
+            mineRating = record.getJSONObject("rating").getString("value");
+        }
 
         JSONObject book = record.getJSONObject("book");
 
@@ -85,7 +99,9 @@ public class BookDataRequest {
         }
 
         return new BookSummaryVO(
-                record.getString("updated"),
+                udpateTime,
+                record.getString("comment"),
+                mineRating,
                 book.getJSONObject("rating").getString("average"),
                 book.getJSONObject("rating").getString("max"),
                 book.getString("pubdate"),
