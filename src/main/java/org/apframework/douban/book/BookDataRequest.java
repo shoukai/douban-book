@@ -99,6 +99,7 @@ public class BookDataRequest {
         }
 
         return new BookSummaryVO(
+                book.getString("id"),
                 udpateTime,
                 record.getString("comment"),
                 mineRating,
