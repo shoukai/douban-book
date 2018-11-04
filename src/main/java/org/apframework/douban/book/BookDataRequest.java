@@ -98,6 +98,8 @@ public class BookDataRequest {
             }
         }
 
+        String image = book.getString("image").replace("view/subject/m/public","mpic");
+
         return new BookSummaryVO(
                 book.getString("id"),
                 udpateTime,
@@ -107,7 +109,7 @@ public class BookDataRequest {
                 book.getJSONObject("rating").getString("max"),
                 book.getString("pubdate"),
                 tags,
-                book.getString("image"),
+                image,
                 book.getString("title"),
                 book.getString("alt")
         );
