@@ -1,5 +1,7 @@
 # 豆瓣读书同步工具
 
+**important** 本工程使用的豆瓣API处于非可用状态，暂时未找到替代方案
+
 ### 简介
 
 利用豆瓣OpenAPI获取个人读书列表并转行为markdown格式。示例： [个人阅读列表](http://apframework.com/pages/read)
