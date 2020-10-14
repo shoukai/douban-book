@@ -1,6 +1,6 @@
 # 豆瓣读书同步工具
 
-**important** 本工程使用的豆瓣API处于非可用状态，暂时未找到替代方案
+已经修复，方案参见：https://blog.csdn.net/a1556274485/article/details/109057022
 
 ### 简介
 

@@ -20,7 +20,7 @@ public class BookDataRequest {
 
     static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
 
-    static String DOUBAN_REQUEST_URL_TEMPLATE = "https://api.douban.com/v2/book/user/%s/collections?status=read&start=%d&count=%d&apikey=0df993c66c0c636e29ecbb5344252a4a";
+    static String DOUBAN_REQUEST_URL_TEMPLATE = "https://api.douban.com/v2/book/user/%s/collections?status=read&start=%d&count=%d&apikey=054022eaeae0b00e0fc068c0c0a2102a";
 
     private OkHttpClient client = new OkHttpClient();
 
