@@ -1,6 +1,6 @@
 # 豆瓣读书同步工具
 
-已经修复，方案参见：https://blog.csdn.net/a1556274485/article/details/109057022
+**豆瓣 apikey 失效，项目目前无法使用**
 
 ### 简介
 
